@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صالون الحلاقة - عرض الأسعار</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #2c3e50;
+            --secondary-gold: #d4af37;
+            --background-start: #1a2a3a;
+            --background-end: #2c3e50;
+            --card-background: white;
+            --hover-background: #f9f9f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Droid Arabic Kufi', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--background-start), var(--background-end));
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* ======= تعديل الهيدر مع الشعار ======= */
+        .header {
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            width: 80px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        .header h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        .header p {
+            font-size: 20px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .price-card {
+            background: var(--card-background);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 380px;
+            overflow: hidden;
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .price-card.premium {
+            border: 3px solid var(--secondary-gold);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--secondary-gold), #b8941f);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .card-header h2 {
+            font-size: 26px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .card-header p {
+            font-size: 17px;
+            opacity: 0.9;
+        }
+
+        .services {
+            padding: 0;
+            list-style: none;
+        }
+
+        .service {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s ease, padding-right 0.3s ease, transform 0.2s;
+        }
+
+        .service:hover {
+            background-color: var(--hover-background);
+            padding-right: 35px;
+            transform: scale(1.01);
+        }
+
+        .service:last-child {
+            border-bottom: none;
+        }
+
+        .service-name {
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .service-name i {
+            color: var(--secondary-gold);
+            font-size: 20px;
+        }
+
+        .service-price {
+            font-weight: 800;
+            color: var(--secondary-gold);
+            font-size: 20px;
+        }
+
+        .highlight {
+            background: #fdf8e8;
+            border-right: 5px solid var(--secondary-gold);
+        }
+
+        .card-footer {
+            background: var(--primary-dark);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 15px;
+        }
+
+        .contact-info {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+
+        .contact-info h2 {
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 19px;
+            color: var(--primary-dark);
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: var(--secondary-gold);
+        }
+
+        .contact-item i {
+            color: var(--secondary-gold);
+            font-size: 24px;
+        }
+
+        .badge {
+            background: #e6b800;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-right: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 850px) {
+             .price-card {
+                max-width: 450px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 36px;
+            }
+
+            .service {
+                padding: 15px 20px;
+            }
+
+            .service-name, .service-price {
+                font-size: 16px;
+            }
+
+            .contact-details {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .contact-info h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- ======= الهيدر مع الشعار ======= -->
+        <div class="header">
+            <div class="header-content">
+                <img src="logo.png" alt="شعار الصالون" class="logo">
+                <h1>صالون الحلاقة المتميز</h1>
+            </div>
+            <p>نقدم لكم أفضل خدمات العناية بالشعر واللحية بأيدي أمهر الحلاقين لضمان مظهر يليق بك.</p>
+        </div>
+
+        <div class="cards-container">
+            <div class="price-card">
+                <div class="card-header">
+                    <h2>باقة الخدمات الأساسية</h2>
+                    <p>خدمات متكاملة بعناية فائقة تلبي احتياجك اليومي</p>
+                </div>
+
+                <div class="services">
+                    <div class="service highlight">
+                        <span class="service-name">
+                            <i class="fas fa-cut"></i>
+                            حلاقة الشعر واللحية
+                        </span>
+                        <span class="service-price">30<small>dh</small></span>
+                    </div>
+                    <div class="service">
+                        <span class="service-name">
+                            <i class="fas fa-user"></i>
+                            حلاقة الشعر (قص وتحديد)
+                        </span>
+                        <span class="service-price">25<small>dh</small></span>
+                    </div>
+                    <div class="service">
+                        <span class="service-name">
+                            <i class="fas fa-child"></i>
+                            حلاقة الأطفال (أقل من 10 سنوات)
+                        </span>
+                        <span class="service-price">15<small>dh</small></span>
+                    </div>
+                    <div class="service">
+                        <span class="service-name">
+                            <i class="fas fa-magic"></i>
+                            تصفيف الشعر (بالكريم أو الجل)
+                        </span>
+                        <span class="service-price">10<small>dh</small></span>
+                    </div>
+                    <div class="service">
+                        <span class="service-name">
+                            <i class="fas fa-leaf"></i>
+                            تشذيب وتحديد اللحية
+                        </span>
+                        <span class="service-price">15<small>dh</small></span>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <p>جودة عالية بأسعار تنافسية. نتشرف بخدمتكم.</p>
+                </div>
+            </div>
+
+            <div class="price-card premium">
+                <div class="card-header">
+                    <h2>باقة العناية الشاملة</h2>
+                    <p>للمظهر الأنيق والجذاب مع لمسة من الاسترخاء الفاخر</p>
+                </div>
+
+                <div class="services">
+                    <div class="service highlight">
+                        <span class="service-name">
+                            <i class="fas fa-crown"></i>
+                            حلاقة متكاملة مع مساج
+                            <span class="badge">الأكثر طلباً</span>
+                        </span>
+                        <span class="service-price">50<small>dh</small></span>
+                    </div>
+                    <div class="service">
+                        <span class="service-name">
+                            <i class="fas fa-spa"></i>
+                            عناية كاملة باللحية (بخار وزيوت)
+                        </span>
+                        <span class="service-price">35<small>dh</small></span>
+                    </div>
+                    <div class="service">
+                        <span class="service-name">
+                            <i class="fas fa-palette"></i>
+                            صبغ الشعر (يشمل المواد)
+                        </span>
+                        <span class="service-price">40<small>dh</small></span>
+                    </div>
+                    <div class="service">
+                        <span class="service-name">
+                            <i class="fas fa-fire"></i>
+                            علاج الشعر بالكيرياتين
+                        </span>
+                        <span class="service-price">80<small>dh</small></span>
+                    </div>
+                    <div class="service">
+                        <span class="service-name">
+                            <i class="fas fa-star"></i>
+                            تنظيف البشرة (ماسك عميق)
+                        </span>
+                        <span class="service-price">25<small>dh</small></span>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <p>استمتع بتجربة فريدة ومظهرك المثالي.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <h2>اتصل بنا للحجز أو الاستفسار</h2>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span dir="ltr">+212 632-801357</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>حي الرياض، جدة</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span>12:00 ليلا - 11:00 ليلا</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
